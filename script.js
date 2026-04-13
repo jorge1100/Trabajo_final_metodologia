@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cargarNotas();
     
     // Agregar nueva nota
+    
     notaForm.addEventListener('submit', function(e) {
       e.preventDefault();
       

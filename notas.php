@@ -5,7 +5,8 @@ header('Content-Type: application/json');
 // Por simplicidad, usamos un archivo JSON
 $archivo_notas = 'notas.json';
 
-// Inicializar el archivo si no existe
+// Inicializar el archivo si no existe 
+
 if (!file_exists($archivo_notas)) {
     file_put_contents($archivo_notas, json_encode(['notas' => []]));
 }
