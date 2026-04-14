@@ -1,9 +1,22 @@
 # Trabajo_final_metodologia
 ### Dificultad: 👹 Medio
 
-- Como usuario, quiero crear nuevas notas para guardar información importante.
-- Como usuario, quiero editar notas existentes para actualizar su contenido.
-- Como usuario, quiero eliminar notas para mantener mi espacio organizado.
-- Como usuario, quiero asignar etiquetas o categorías a mis notas para poder agruparlas por temas y mantener el orden.
-- Como usuario, quiero ver una lista de todas mis notas con su título y fecha para tener una vista general de mis notas guardadas y las ultimas modificaciones de cada nota.
-- Como usuario, quiero buscar notas por palabras clave en el título para encontrar una información específica rápidamente sin leer toda la lista.
+El sistema de notas está diseñado para ayudar al usuario a organizar y gestionar información de manera sencilla y eficiente. A continuación, se describen las principales funcionalidades que ofrece la aplicación:
+
+
+El usuario puede crear nuevas notas para registrar información importante, ideas, recordatorios o apuntes que desee conservar.
+
+
+El usuario tiene la posibilidad de editar notas existentes, lo que le permite actualizar su contenido cuando la información cambia o necesita ser corregida.
+
+
+El sistema permite eliminar notas, ayudando al usuario a mantener su espacio de trabajo ordenado y libre de información innecesaria.
+
+
+Cada nota puede contar con etiquetas o categorías, facilitando la organización y el agrupamiento de notas por temas específicos.
+
+
+El usuario puede visualizar un listado de todas sus notas, donde se muestra el título y la fecha de creación o última modificación, brindando una vista general del contenido almacenado.
+
+
+El sistema ofrece una búsqueda por palabras clave en el título de las notas, permitiendo encontrar rápidamente una nota específica sin necesidad de revisar toda la lista.
