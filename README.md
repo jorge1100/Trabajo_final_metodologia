@@ -3,7 +3,6 @@
 
 El sistema de notas está diseñado para ayudar al usuario a organizar y gestionar información de manera sencilla y eficiente. A continuación, se describen las principales funcionalidades que ofrece la aplicación:
 
-practica 123
 
 El usuario puede crear nuevas notas para registrar información importante, ideas, recordatorios o apuntes que desee conservar.
 
@@ -96,4 +95,4 @@ La información debe almacenarse de forma segura.
 
 ## cierre del trabajo
 
-En conclusión, el sistema de notas propuesto brinda una solución sencilla y eficiente para la gestión de información personal, incorporando funcionalidades básicas y escalables, lo cual permite futuras mejoras según las necesidades del usuario.
+En conclusión, el sistema de notas propuesto brinda una solución sencilla y eficiente para la gestión de información personal, incorporando funcionalidades básicas y escalables, lo cual permite futuras mejoras según las necesidades del usuario...
