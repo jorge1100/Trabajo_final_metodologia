@@ -1,30 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Sistema de Notas</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container"> 
-    <h1>Mis Notas</h1>
-    
-    <form id="notaForm">
-      <div>
-        <label for="titulo">Título:</label>
-        <input type="text" id="titulo" required>
+
+  <!-- BOTÓN CENTRAL -->
+  <main class="vista-principal">
+    <button id="btnCrearNota" class="btn-crear">
+      Crear nota
+    </button>
+  </main>
+
+  <!-- CONTENEDORES -->
+  <section class="paneles">
+
+    <div class="panel">
+      <h2>Notas guardadas</h2>
+      <div id="listaGuardadas" class="lista-notas"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Notas archivadas</h2>
+      <div id="listaArchivadas" class="lista-notas"></div>
+    </div>
+
+  </section>
+
+  <!-- HOJA / MODAL -->
+  <div id="visorNota" class="visor-oculto">
+    <div class="hoja">
+
+      <input type="hidden" id="notaId" />
+
+      <input
+        type="text"
+        id="notaTitulo"
+        placeholder="Título de la nota"
+      />
+
+      <textarea
+        id="notaContenido"
+        placeholder="Contenido de la nota"
+      ></textarea>
+
+      <div class="acciones">
+        <button id="btnGuardar">Guardar nota</button>
+        <button id="btnEditar">Editar nota</button>
+        <button id="btnArchivar">Archivar</button>
+        <button id="btnEliminar">Eliminar</button>
+        <button id="btnCerrar">Cerrar</button>
       </div>
-      <div>
-        <label for="contenido">Contenido:</label>
-        <textarea id="contenido" required></textarea>
-      </div>
-      <button type="submit">Guardar Nota</button>
-    </form>
-    
-    <div id="listaNotas"></div>
+
+    </div>
   </div>
-  
+
   <script src="script.js"></script>
 </body>
 </html>
