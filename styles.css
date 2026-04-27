@@ -1,3 +1,138 @@
+/* ==== ESTILO GENERAL ==== */
 body {
-    background-color: black;
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #0f1224, #191f55);
+  color: white;
+  min-height: 100vh;
+}
+
+/* ==== BOTÓN CENTRAL ==== */
+.vista-principal {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.btn-crear {
+  background: #1e3cff;
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  font-size: 1.4rem;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+/* ==== PANELES ==== */
+.paneles {
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+  padding: 0 40px;
+}
+
+.panel {
+  width: 40%;
+}
+
+.panel h2 {
+  margin-bottom: 20px;
+}
+
+/* ==== TARJETAS DE NOTAS ==== */
+.lista-notas {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nota {
+  background: linear-gradient(145deg, #20266a, #161a45);
+  border-radius: 18px;
+  padding: 18px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px #2a2f66;
+}
+
+.nota h3 {
+  margin: 0 0 6px;
+}
+
+.nota p {
+  margin: 0 0 10px;
+  color: #b9bde8;
+}
+
+.nota button {
+  background: transparent;
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* ==== VISOR + BLUR ==== */
+#visorNota {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 30, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#visorNota.visor-oculto {
+  display: none;
+}
+
+/* ==== HOJA ==== */
+.hoja {
+  background: #fdfbf7;
+  width: 520px;
+  padding: 30px;
+  border-radius: 10px;
+  color: #222;
+  animation: aparecer 0.25s ease;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.hoja input,
+.hoja textarea {
+  width: 100%;
+  border: none;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.hoja input {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.hoja textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.acciones button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
 }

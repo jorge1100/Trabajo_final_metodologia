@@ -1,69 +1,75 @@
 <?php
 header('Content-Type: application/json');
 
-// En una aplicación real esto usaría una base de datos
-// Por simplicidad, usamos un archivo JSON
-$archivo_notas = 'notas.json';
+$conexion = new mysqli("localhost", "root", "", "trabajo_final_metodologia");
+$id_usuario = 1;
 
-// Inicializar el archivo si no existe 
+$accion = $_GET['accion'] ?? $_POST['accion'] ?? '';
 
-if (!file_exists($archivo_notas)) {
-    file_put_contents($archivo_notas, json_encode(['notas' => []]));
-}
-
-// Cargar las notas
-$datos = json_decode(file_get_contents($archivo_notas), true);
-
-// Determinar la acción a realizar
-$accion = isset($_GET['accion']) ? $_GET['accion'] : '';
-if (empty($accion) && isset($_POST['accion'])) {
-    $accion = $_POST['accion'];
-}
-
+/* ========================= */
 switch ($accion) {
-    case 'listar':
-        echo json_encode($datos);
-        break;
-        
-    case 'agregar':
-        if (isset($_POST['titulo']) && isset($_POST['contenido'])) {
-            $nuevaNota = [
-                'id' => time(), // Usar timestamp como ID simple
-                'titulo' => $_POST['titulo'],
-                'contenido' => $_POST['contenido'],
-                'fecha' => date('Y-m-d H:i:s')
-            ];
-            
-            $datos['notas'][] = $nuevaNota;
-            file_put_contents($archivo_notas, json_encode($datos));
-            
-            echo json_encode(['exito' => true]);
-        } else {
-            echo json_encode(['exito' => false, 'error' => 'Datos incompletos']);
-        }
-        break;
-        
-    case 'eliminar':
-        if (isset($_POST['id'])) {
-            $id = $_POST['id'];
-            $nuevasNotas = [];
-            
-            foreach ($datos['notas'] as $nota) {
-                if ($nota['id'] != $id) {
-                    $nuevasNotas[] = $nota;
-                }
-            }
-            
-            $datos['notas'] = $nuevasNotas;
-            file_put_contents($archivo_notas, json_encode($datos));
-            
-            echo json_encode(['exito' => true]);
-        } else {
-            echo json_encode(['exito' => false, 'error' => 'ID no proporcionado']);
-        }
-        break;
-        
-    default:
-        echo json_encode(['exito' => false, 'error' => 'Acción desconocida']);
+
+  case 'listar':
+    $sql = "SELECT id_nota, titulo_nota, contenido_nota
+            FROM notas
+            WHERE id_usuario = ? AND nota_archivada = 0
+            ORDER BY id_nota DESC";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $id_usuario);
+    $stmt->execute();
+
+    $res = $stmt->get_result();
+    $notas = [];
+
+    while ($row = $res->fetch_assoc()) {
+      $notas[] = [
+        'id' => $row['id_nota'],
+        'titulo' => $row['titulo_nota'],
+        'contenido' => $row['contenido_nota']
+      ];
+    }
+
+    echo json_encode(['notas' => $notas]);
+    break;
+
+  /* ========================= */
+  case 'agregar':
+    $sql = "INSERT INTO notas (id_usuario, titulo_nota, contenido_nota, nota_archivada)
+            VALUES (?, ?, ?, 0)";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("iss", $id_usuario, $_POST['titulo'], $_POST['contenido']);
+    $stmt->execute();
+
+    echo json_encode(['exito' => true]);
+    break;
+
+  /* ========================= */
+  case 'editar':
+    $sql = "UPDATE notas
+            SET titulo_nota = ?, contenido_nota = ?, fecha_modificacion = NOW()
+            WHERE id_nota = ? AND id_usuario = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param(
+      "ssii",
+      $_POST['titulo'],
+      $_POST['contenido'],
+      $_POST['id'],
+      $id_usuario
+    );
+    $stmt->execute();
+
+    echo json_encode(['exito' => true]);
+    break;
+
+  /* ========================= */
+  case 'eliminar':
+    $sql = "UPDATE notas
+            SET nota_archivada = 1
+            WHERE id_nota = ? AND id_usuario = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("ii", $_POST['id'], $id_usuario);
+    $stmt->execute();
+
+    echo json_encode(['exito' => true]);
+    break;
 }
-?>
