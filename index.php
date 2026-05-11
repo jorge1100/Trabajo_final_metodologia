@@ -1,3 +1,8 @@
+<?php
+
+require_once __DIR__ . '/config/auth.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

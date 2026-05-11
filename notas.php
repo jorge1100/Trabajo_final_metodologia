@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/config/session.php';
+
 header('Content-Type: application/json');
 
 $conexion = new mysqli("localhost", "root", "", "trabajo_final_metodologia");
@@ -7,7 +9,7 @@ if ($conexion->connect_error) {
     exit;
 }
 
-$id_usuario = 1;
+$id_usuario = $_SESSION['id_usuario'];
 $accion = $_GET['accion'] ?? $_POST['accion'] ?? '';
 
 switch ($accion) {
